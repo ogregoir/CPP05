@@ -32,7 +32,7 @@ class AForm
 		AForm();
 		AForm(const AForm &copy);
 		AForm &operator=(const AForm &copy);
-		~AForm();
+		virtual ~AForm();
 
 		AForm(std::string name, int grade_req, int grade_exec);
 

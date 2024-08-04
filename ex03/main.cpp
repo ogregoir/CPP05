@@ -15,24 +15,35 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 
 int main() {
-    try {
-        Bureaucrat john("John", 70);
-        ShrubberyCreationForm shrubbery("Home");
-        RobotomyRequestForm robotomy("Wall-e");
-        PresidentialPardonForm pardon("Athur");
+    Intern intern;
+    Bureaucrat employed("Joe", 1);
+    std::string target = "Bender";
 
-        john.signForm(shrubbery);
-        john.signForm(robotomy);
-        john.signForm(pardon);
+    AForm* form1 = intern.makeForm("robotomy request", target);
+    if (form1) {
+        form1->execute(employed);
+        delete form1;
+    }
 
-        john.executeForm(shrubbery);
-        john.executeForm(robotomy);
-        john.executeForm(pardon);
+    AForm* form2 = intern.makeForm("presidential pardon", target);
+    if (form2) {
+        form2->execute(employed);
+        delete form2;
     }
-    catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+
+    AForm* form3 = intern.makeForm("shrubbery creation", target);
+    if (form3) {
+        form3->execute(employed);
+        delete form3;
     }
+
+    AForm* form4 = intern.makeForm("unknown form", target);
+    if (form4) {
+        delete form4;
+    }
+
     return 0;
 }
